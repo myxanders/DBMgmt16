@@ -1,0 +1,50 @@
+--Query 1
+select
+orders.ordnum, orders.totalusd
+from orders;
+
+--Query 2
+select
+agents.name, agents.city
+from agents
+where agents.name = 'Smith';
+
+--Query 3
+select
+products.pid, products.name, products.priceusd
+from products
+where products.quantity > 208000;
+
+--Query 4
+select
+customers.name, customers.city
+from customers;
+
+--Query 5
+select
+agents.name
+from agents
+where agents.city not in ('New York', 'Tokyo');
+
+--Query 6
+select *
+from products
+where products.city not in ('Dallas', 'Duluth')
+and products.priceusd >= 1.00;
+
+--Query 7
+select *
+from orders
+where orders.mon = 'jan'
+or orders.mon = 'mar';
+
+--Query 8
+select *
+from orders
+where orders.mon = 'feb'
+and orders.totalusd <= 500.00;
+
+--Query 9
+select *
+from orders
+where orders.cid = 'c005';
