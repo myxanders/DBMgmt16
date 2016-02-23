@@ -38,14 +38,29 @@ where cid in (select cid
 					    where pid = 'p07'
 					    )
 	      ); 
+	-- select distinct pid
+	-- from orders
+	-- where pid = 'p01'
+	--  intersect
+	-- select cid
+	-- from orders
+	-- where pid = 'p07'
 
 --Query 5
-select distinct pid 
-from orders
-where cid not in (select cid
+-- v Original ~ Wrong
+--select distinct pid 
+--from orders
+--where cid not in (select cid    <-- -_- are you kidding me....cid instead of pid? ugh
+--		  from orders
+--		  where aid = 'a07'
+		  )
+--order by pid DESC;
+select pid
+from products
+where pid not in (select pid
 		  from orders
 		  where aid = 'a07'
-		  )
+
 order by pid DESC;
 
 --Query 6
@@ -60,17 +75,23 @@ where cid in (select cid
 	      );
 
 --Query 7
+-- v Original ~ Wrong
+--select *
+--from customers
+--where cid not in (select cid
+--		  from customers
+--		  where city in ('Dallas', 'London')
+--		  )
+--and discount in (select discount
+--		 from customers
+--		 where city in ('Dallas', 'London')
+--		 );
+
 select *
 from customers
-where cid not in (select cid
-		  from customers
-		  where city in ('Dallas', 'London')
-		  )
-and discount in (select discount
-		 from customers
-		 where city in ('Dallas', 'London')
-		 );
-
+where discount in (select discout
+		   from customers
+		   where city in ('Dallas', 'London')
 --Question #8
 -- Check constraints are put in place to maintain table integrity when we insert, delete or update data.
 -- These constraints allow us to establish primary keys, default data types, and not null values, for example.
