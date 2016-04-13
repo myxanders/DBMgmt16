@@ -7,12 +7,18 @@ WHERE agents.aid = orders.aid
 	AND orders.cid = 'c002';
 
 -- Query 2 ~ Output: IDs ~ products ordered through any agent who makes at least on order for a customer in Dallas, sorted by pid from highest to lowest. ~Joins
-SELECT DISTINCT orders.pid
-FROM customers, orders
-WHERE customers.city = 'Dallas'
-	AND customers.cid = orders.cid
-ORDER BY pid DESC;
-
+--SELECT DISTINCT orders.pid
+--FROM customers, orders
+--WHERE customers.city = 'Dallas'
+--	AND customers.cid = orders.cid
+--ORDER BY pid DESC;
+--^^^WRONG
+SELECT DISTINCT o2.aid
+FROM customers, orders o1, orders o2
+WHERE customers.cid = o1.cid
+  AND o1.aid = o2.aid
+  AND customers.city = 'Dallas'
+ORDER BY o2.pid DESC;
 -- Query 3 ~ Output: Names ~ customers who have never placed an order ~ Subquery
 SELECT customers.name
 FROM customers
